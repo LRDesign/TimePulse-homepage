@@ -6,6 +6,8 @@ gem 'rails'
 gem 'pg'
 gem "haml-rails"
 gem "sass-rails"
+gem 'compass-rails'
+gem 'zurb-foundation', '~> 4.0.0'
 gem "will_paginate", "~> 3.0.beta"
 gem 'tinymce-rails'
 gem 'devise'
@@ -34,6 +36,7 @@ group :development, :test do
   gem 'rspec-steps', ">= 0.0.6"
   gem 'debugger'
   gem 'quiet_assets'
+  gem 'poltergeist'
 end
 
 group :development do

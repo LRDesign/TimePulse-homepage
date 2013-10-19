@@ -1,50 +1,53 @@
 @import constants.sass
+@import 'compass'
+@import 'foundation_and_overrides'
 
-#content 
-  :border 1px #666666 solid
-  :background white 
+#content
 
-  h1 
-    :border-bottom 1px #666666 solid
+  h1
+    +border-radius(6px)
+    :border 3px solid $primary_light_1
+    :background $primary_dark_2
     :padding 0.25em
-    :background #000044
     :color white
-    :margin-bottom 0 
+    :margin-bottom 30px
 
-  #content-body 
-    :padding 1em 
+  #content-body
+    +border-radius(6px)
+    :background $primary_light_2
+    :padding 1em
 
-  #content-body:after 
+  #content-body:after
     +clearfix
 
-table.listing 
+table.listing
   :border-collapse collapse
   :margin 1em 0
   :border 1px solid black
-  :border-bottom-width 2px           
-  
+  :border-bottom-width 2px
+
   td, th
     :border 1px solid black
-    :padding 3px 0.25em 
+    :padding 3px 0.25em
 
-  th 
+  th
     font-weight bold
-    background #ccccee 
-  tr.odd 
-    background white 
-  tr.even 
-    background #eeeeee 
-  tr.info td 
-    border-top-width 2px 
-  tr.description td 
-    border-bottom-width 2px 
-  tr.one_line td 
+    background #ccccee
+  tr.odd
+    background white
+  tr.even
+    background #eeeeee
+  tr.info td
+    border-top-width 2px
+  tr.description td
+    border-bottom-width 2px
+  tr.one_line td
     white-space nowrap
-    overflow hidden 
+    overflow hidden
 
 p
-  :margin 1em 0     
-  
+  :margin 1em 0
+
 em
   :font-style italic
 strong
