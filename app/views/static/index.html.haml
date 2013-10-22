@@ -1,9 +1,9 @@
-- set_headline "LRD CMS Homepage"
+- set_headline image_tag("/assets/logo.png")
 
 %p
   This is the home page of whatever site uses this CMS.   This should be
-  customized on a per-site basis.      
-  
-- unless logged_in?  
+  customized on a per-site basis.
+
+- unless logged_in?
   %p
-    =link_to "Click to login", login_path 
+    =link_to "Click to login", login_path
