@@ -1,9 +1,7 @@
 - set_headline image_tag("/assets/logo.png")
 
-%p
-  This is the home page of whatever site uses this CMS.   This should be
-  customized on a per-site basis.
+%h2
+  Track Your Time. Track Your Activity. Show Your Work.
 
-- unless logged_in?
-  %p
-    =link_to "Click to login", login_path
+%p
+  = raw Page.find_by_permalink("home").content

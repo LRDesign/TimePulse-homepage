@@ -37,8 +37,6 @@
     = render :partial => 'layouts/admin_nav' if admin?
     #inset
       #wrap
-        #header
-          = render :partial => 'layouts/nav'
 
         #content-wrap
           -# = render :partial => 'layouts/aux'
@@ -46,5 +44,8 @@
           #content
             %h1= yield :headline if yield :headline
             #content-body
-              = render :partial => 'layouts/flash' , :locals => { :flash => flash }
-              = yield
+              #main-content
+                = render :partial => 'layouts/flash' , :locals => { :flash => flash }
+                = yield
+              #sidebar
+                = render :partial => 'layouts/nav'
