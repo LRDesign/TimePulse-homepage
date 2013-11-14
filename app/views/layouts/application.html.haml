@@ -34,6 +34,7 @@
     = yield :header
 
   %body{ :class => body_class }
+    = render :partial => 'layouts/github_badge'
     = render :partial => 'layouts/admin_nav' if admin?
     #inset
       #wrap

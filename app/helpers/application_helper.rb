@@ -39,5 +39,4 @@ module ApplicationHelper
   def root_path?
     request.fullpath == root_path or request.fullpath == '/index'
   end
-
 end

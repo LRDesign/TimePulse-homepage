@@ -43,10 +43,10 @@ group :development do
   gem "populator"
   gem "faker"
   gem "pivotal-github"
+  gem 'capistrano', "< 3.0"
 end
 
 # Deploy with Capistrano
-# gem 'capistrano'
 
 # Bundle the extra gems:
 # gem 'bj'

@@ -11,13 +11,13 @@ require 'bundler'
 require 'bundler/capistrano'
 set :bundle_without,  [:development, :test]
 
-set :repository,  "git@github.com:LRDesign/LRD-CMS.git"
+set :repository,  "git@github.com:LRDesign/tracks-homepage.git"
 #set :deploy_via, :remote_cache
 set :scm, 'git'
 set :scm_verbose, true
 
-set :stages, %w(staging production)
-set :default_stage, 'staging'
+set :stages, %w(production)
+set :default_stage, 'production'
 set :use_sudo, false
 
 set :user,   'root'

@@ -1,6 +1,6 @@
 set :user, 'root'
 set :domain, 'appserver.lrdesign.com'
-set :applicationdir, "/var/www/some-cms-server.com"
+set :applicationdir, "/var/www/timepulse.io"
 set :deploy_to, applicationdir
 set :keep_releases, 10
 set :branch, 'master'
