@@ -153,8 +153,8 @@ $header-font-family: "News Cycle", "HelveticaNeue-Light", "Helvetica Neue Light"
 
 // We use these to style anchors
 // $anchor-text-decoration: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: darken($primary-color, 5%);
+$anchor-font-color: darken($secondary_dark_2, 10%);
+$anchor-font-color-hover: darken($secondary_dark_2, 20%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -163,8 +163,8 @@ $header-font-family: "News Cycle", "HelveticaNeue-Light", "Helvetica Neue Light"
 // $hr-margin: emCalc(20px);
 
 // We use these to style lists
-// $list-style-position: outside;
-// $list-side-margin: emCalc(18px);
+$list-style-position: outside;
+$list-side-margin: emCalc(18px);
 // $definition-list-header-weight: bold;
 // $definition-list-header-margin-bottom: .3em;
 // $definition-list-margin-bottom: emCalc(12px);
