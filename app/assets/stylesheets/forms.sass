@@ -1,4 +1,4 @@
-@import constants.sass
+@import includes
 
 form
   :margin-top .5em
@@ -20,28 +20,18 @@ form
   +clearfix
 
 .labeled_input
-  :margin-bottom .25em
-  :margin-left 1em
-  :clear both
+  @include grid-row
 
   label
-    :display block
-    :float left
-    :width 8em
+    @include grid-column(2)
     :text-align right
-    :font-weight bold
-    :margin-right 1em
-
-  .assignable
-
+    :position relative
+    :top $form-spacing/2
+  textarea, select, #{$all_input_types}
+    @include grid-column(7)
   .comment
-    :display inline
+    @include grid-column(3)
     :font-style italic
-    :margin-left 1em
-  select
-    :width 20em
-  input
-    :margin-right .5em
 
 .required label
   :font-weight bold

@@ -5,17 +5,25 @@
 #content
 
   h1
-    +border-radius(6px)
-    :border 3px solid $primary_light_1
+    +border-radius(12px)
     :background $primary_dark_2
     :padding 0.25em
     :color white
     :margin-bottom 30px
 
   #content-body
+    @include grid-row
     +border-radius(6px)
     :background $primary_light_2
     :padding 1em
+    #main-content
+      @include grid-column(10)
+    #sidebar
+      a
+        color: white
+      +border-radius(6px)
+      background: $primary_dark_1
+      @include grid-column(2)
 
   #content-body:after
     +clearfix

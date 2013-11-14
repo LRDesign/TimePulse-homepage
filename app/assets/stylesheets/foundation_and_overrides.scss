@@ -10,6 +10,20 @@ $primary_dark_2:  #165d75;
 $primary_ultralight: #e2f0f5;
 $primary_ultradark: #083E55;
 
+// used for accents - mostly timeclock & current work
+$secondary_light_1: #ffe4A3;
+$secondary_light_2: #ffDA82;
+$secondary_med:     #ffc358;
+$secondary_dark_1:  #bfa461;
+$secondary_dark_2:  #a67d1d;
+
+// used to key administrative stuff
+$tertiary_light_1: #FFB1a3;
+$tertiary_light_2: #FF9582;
+$tertiary_med:     #FF7258;
+$tertiary_dark_1:  #BF7061;
+$tertiary_dark_2:  #A6321D;
+
 // Settings file to override Foundation variables
 
 // You can find the variables for each component at the bottom of their
@@ -24,7 +38,7 @@ $primary_ultradark: #083E55;
 $em-base: 16px;
 
 // We use these to control various global styles
-$body-bg: white;
+$body-bg: $primary_ultralight;
 $body-font-color: black;
 $body-font-family: "News Cycle", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $body-font-weight: 300;
