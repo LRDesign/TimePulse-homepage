@@ -2,6 +2,9 @@
 @import 'compass'
 @import 'foundation_and_overrides'
 
+@mixin content_box_shadow
+  +box-shadow(4px 4px 50px rgba(90, 90, 90, 0.55))
+
 #content
 
   h1
@@ -10,8 +13,9 @@
     :padding 0.25em
     :color white
     :margin-bottom 30px
-
+    @include content_box_shadow
   #content-body
+    @include content_box_shadow
     @include grid-row
     +border-radius(6px)
     :background $primary_light_2
