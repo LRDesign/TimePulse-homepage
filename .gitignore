@@ -9,6 +9,8 @@ tmp/.*
 tmp/*
 tmp/profile*
 .DS_Store
+.ruby-version
+.ruby-gemset
 doc/plugins
 doc/api
 doc/app
