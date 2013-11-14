@@ -1,0 +1,113 @@
+<p>
+This guide assumes you will be running TimePulse on your own server, with Apache and Passenger,
+using a MySQL database, and deploying with Capistrano 2.x. If you're using another option (Nginx,
+Heroku, Postgres, etc.) please let us know if you got it working and perhaps contact us so we
+can expand this guide.
+</p>
+
+<h2>Steps to installing TimePulse</h2>
+
+<ol>
+  <li><a href='#fork' title='Fork The Repository'>Fork The Repository</a></li>
+  <li><a href='#server' title='Build a server'>Build a Server</a></li>
+  <li><a href='#database' title='Create a Database'>Create a Database</a></li>
+  <li><a href='#deploy_config' title='Create Deploy Config Files'>Create Deploy Config Files</a></li>
+  <li><a href='#cap_directories' title='Create Capistrano Directories on Server'>Create Capistrano Directories on Server</a></li>
+  <li><a href='#app_config' title='Create App Config Files on Server'>Create App Config Files on Server</a></li>
+  <li><a href='#deploy' title='First Deploy'>First Deployment</a></li>
+  <li><a href='#dns' title='DNS'>Set Up DNS</a></li>
+</ol>
+
+<a name='fork'></a>
+<h2>Fork The Repository</h2>
+<p>
+<a href='http://github.com/TimePulse/TimePulse'>Fork TimePulse</a> on GitHub.  You can fork master, which will generally be kept stable but incrementally updated with features and bugfixes, or a specific release branches.
+</p>
+
+<a name='server'></a>
+<h2>Build a Server</h2>
+<p>You'll need a server with Apache, Passenger, MySQL, and Ruby 1.9.3 or 2.0.X.  At LRDesign we host TimePulse on an AWS
+EC2 Small server along with several other small Rails apps, like our website.   Building the server is
+outside the scope of this tutorial, but if you haven't done it before there's an
+<a href='https://www.digitalocean.com/community/articles/how-to-install-rails-apache-and-mysql-on-ubuntu-with-passenger' title='Guide to Building a Rails Server'>excellent guide to building a Ubuntu Rails server on DigitalOcean</a>.
+</p>
+
+<a name='database'></a>
+<h2>Create a Database</h2>
+<p>On your server, create a MySQL database for the app. If your DB is named "timepulse_production", username is "timepulse" and password is "badpassword", this will do it:
+<pre class='code'>
+&gt; mysql -u root
+mysql&gt; create database timepulse_production;
+mysql&gt; create user timepulse identified by 'badpassword';
+mysql&gt; grant all on timepulse_production to timepulse;
+</pre>
+</p>
+<p>If you want a staging server as well, create a second database in the step above.</p>
+
+<a name='deploy_config'></a>
+<h2>Create Deploy Config Files</h2>
+<p>You'll need capistrano configs to deploy to production (and staging if you have one).  You'll want to add these to your fork of TimePulse, to point your deploy configuration at your forked repo, and direct it to install to your server.  Feel free to crib from our deploy configs in our own fork of TimePulse:
+<ul class='disc'>
+  <li><a href='https://github.com/LRDesign/TimePulse/blob/master/config/deploy.rb' title='deploy.rb'>config/deploy.rb</a>
+  (Particularly see line 14, 'set :repository', which you should point to your own repo. Remove staging from
+  line 19 if you're not using it.)
+  </li>
+  <li><a href='https://github.com/LRDesign/TimePulse/blob/master/config/deploy/production.rb' title='production.rb'>config/deploy/production.rb</a>
+  (Set the 'deploy_to' line to the directory you'd like to use on your server, 'domain' to
+  the domain you'll be using, and 'branch' to the name of the branch you'll use for production deploys.
+  We keep a production branch separate from master and staging, but you may not need or want to.)
+  </li>
+  <li><a href='https://github.com/LRDesign/TimePulse/blob/master/config/deploy/staging.rb' title='staging.rb'>(optional, if you're building a staging instance) config/deploy/staging.rb</a>
+     (The extra stuff in ours is for automatically cloning the most recent production DB and assets to staging at each deploy.)
+  </li>
+</ul>
+</p>
+<p>These files will refer to the directories you want to deploy in; you'll need them in the next step.</p>
+
+<a name='cap_directories'></a>
+<h2>Create Capistrano Directories on Server</h2>
+<p>
+For each application created above, you'll need to create the capistrano directories to receive the application. If you're deploying to "/var/www/timepulse", you should create this list:
+<pre class='code'>
+&gt; mkdir -p /var/www/timepulse/releases
+&gt; mkdir -p /var/www/timepulse/shared/config/initializers
+</pre>
+</p>
+<p>Depending on your setup, you may have to chown some of these directories to the user or group that
+Apache runs as.
+</p>
+
+<a name='app_config'></a>
+<h2>Create App Config Files on Server</h2>
+<p>It's a bad idea to put any sensitive information (like database passwords, API keys, etc.) into a code
+repository. We put all such info in files present only on the server and use our cap  scripts to link them
+to the current deploy directory.  You'll need to create files for all of the ones described in
+<a href='https://github.com/LRDesign/TimePulse/blob/master/config/deploy.rb' title='deploy.rb'>config/deploy.rb</a>.
+Empty examples can be found in (e.g.) config/database.yml.example.  These should all go in parallel directories
+on the server, under /var/www/timepulse/shared/config/.
+</p>
+
+<a name='deploy'></a>
+<h2>First Deployment<</h2>
+<p>If all the above is configured correctly, you should be able to deploy from a local development copy
+of the app.  You'll need to bundle gems.
+<pre class='code'>
+&gt; bundle
+&gt; cap production deploy:check
+&gt; cap production deploy:cold
+&gt; cap prodiction deploy:db_install
+</pre>
+</p>
+
+<a name='dns'></a>
+<h2>Set Up Apache and DNS</h2>
+<p>
+Finally, you'll need to set up an Apache config for each site, and point DNS to your new time tracking server.
+</p>
+<a name='login'></a>
+<h2>Log in as an Administrator</h2>
+<p>
+The database install should have created an initial administrative server for you (see db/seeds.rb).  Visit your new site
+and log in as "admin" with password "foobar".  From there, you can set up users, clients, projects, etc.
+See our <a href='/usage' title='TimePulse Usage Guide'>usage guide</a> for more!
+</p>
