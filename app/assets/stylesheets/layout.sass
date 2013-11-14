@@ -1,6 +1,15 @@
 @import constants.sass
+@import compass
+@import compass/css3/images
+@import foundation_and_overrides
+
+html
+  @include background-with-css2-fallback(linear-gradient(top, $primary_light_1, $primary_ultralight) no-repeat center center fixed, $primary_ultralight no-repeat center center fixed)
+  @include background-size(cover)
+
 
 #inset
+
   :margin 0
   :padding 1px
 
@@ -16,6 +25,7 @@
 
   p
     :margin-top 2em
+
 
 #footer
   :text-align center
