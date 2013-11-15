@@ -17,7 +17,7 @@ gem 'mizugumo', "0.1.0"
 gem 'lrd_view_tools'
 gem 'dynamic_form'
 gem 'carrierwave'
-gem "mini_magick"
+gem "rmagick"
 
 group :assets do
   gem 'turbo-sprockets-rails3'

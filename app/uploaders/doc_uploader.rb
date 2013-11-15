@@ -1,4 +1,4 @@
 # encoding: utf-8
 
-class DocUploader < PaperclipUploader
+class DocUploader < CarrierWave::Uploader::Base
 end
