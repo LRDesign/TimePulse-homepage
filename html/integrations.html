@@ -1,0 +1,85 @@
+<p>One of the most useful features of TimePulse (particularly for programmers) is its ability to integrate with GitHub and PivotalTracker, two popular programming tools. This section explains how to setup your TimePulse install to automatically pull in updates (in the form of commits or story updates) from GitHub and PivotalTracker</p>
+
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#initial">Inital Setup</a></li>
+  <li><a href="#pullsetup">Manually fetching updates</a></li>
+  <li><a href="#autosetup">Receiving automatic updates</a></li>
+</ul>
+
+<a name="overview">
+<h2>How Integrations Works</h2>
+
+<p>TimePulse has two ways of syncing with GitHub and PivotalTracker:</p>
+<ol>
+  <li>It can pull all updates for a project in one big fetch.</li>
+  <li>It can automatically receive new updates for a project from GitHub or PivotalTracker using hooks in each provider's API</li>
+</ol>
+
+<p>At LRD, our general workflow is to primarily use the automatic update functionality, and only perform a global fetch as a way of 'catching up' when we setup integration on a project we've already been working on for a while.</p>
+
+<p>Regardless of how you setup integration, you will see your updates in to places:</p>
+<div style="integrations-image-block">
+<h3>In the dashboard you'll see updates for a project:</h3>
+<a href="/uploads/dashboard.jpg"><img src="/uploads/dashboard.jpg"/></a></div>
+<div class="integrations-image-block">
+<h3>On the right side you'll see recent activity:</h3>
+<a href="/uploads/rightsideactivity.jpg"><img src="/uploads/rightsideactivity.jpg"/></a></div>
+
+<a name="inital">
+<h2>Initial Setup</h2>
+
+<p>The first step to setup integrations, regardless of whether you will be doing fetches or automatic updates, is to identify to TimePulse each projects corresponding repository or Pivotal project. To do this:</p>
+
+<ol>
+<li>Log in as admin</li>
+<li>Click on Projects on the menu bar</li>
+<li>Choose the Project you're setting up and click Edit.</li>
+<li>Enter the corresponding GitHub repository (the full HTTPS url for repository) or Pivotal Project number (the last portion of the URL when you are viewing a project)</li>
+<li>Click Save</li>
+<li>Repeat for every project you want to setup integrations for</li>
+</ol>
+
+<a name="pullsetup">
+<h2>Manually fetching updates</h2>
+
+<p>To pull updates from either Github or Pivotal, you will need an API key to access protected portions of their API. Currently, TimePulse only supports one API key for GitHub and one API key for Pivotal. In LRD's installation, we use the API key of someone in our organization who has access to all of our projects. If you do make modifications to allow multiple API keys, please contribute back to the repository. Here is how to obtain an API key from Github and PivotalTracker:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1509-personal-api-tokens">How to get a GitHub Personal API Token</a></li>
+<li><a href="https://www.pivotaltracker.com/help/api?version=v3#access_control">How to retrieve your PivotalTracker API token</a></li>
+</ul>
+
+<p>Once you have your API keys, you'll want to create on your server a /config/initializers/api_keys.rb -- and enter your API keys there (the structure for this file can be found in /config/initializers/api_keys.rb.example in the repository.</p>
+
+<p>Once this is setup, to fetch all updates for a project, do the following steps:</p>
+
+<ol>
+<li>Log in as admin</li>
+<li>Click on Projects on the menu bar</li>
+<li>Choose the Project you're setting up and click Show.</li>
+<li>Click either Pull Commit History (for Github) or Pull Pivotal Stories (for Pivotal Tracker)</li>
+</ol>
+
+<p>This will pull the entire history for a project-- again, we primarily use this as a tool for pulling the initial Github/Pivotal history when we setup a project. There is no progress feedback while updates are pulled-- this is definitely a feature we'd love to see implemented (or may implement ourselves)</p>
+
+<a name="autosetup">
+<h2>Receiving automatic updates</h2>
+
+<p>You can setup your project to receive an update any time it's Pivotal Tracker project or Github Repository changes. To do this, you're TimePulse installation must be hosted at a publicly accessible URL that does not change.<p>
+
+<p>Other than entering your projects Github URL or Pivotal project id (see <a href="#initial">Initial Setup</a>), there is no further setup to do on TimePulse's side. However, you will need to login into GitHub or PivotalTracker and setup a webhook for each project you want to post automatic updates to. Here are the instructions to do this:</p>
+
+<ul>
+<li><a href="https://help.github.com/articles/post-receive-hooks">Setting up a Github Post-receive Hook</a></li>
+<li><a href="https://www.pivotaltracker.com/help/integrations?version=v3#activity_web_hook">How to setup a Pivotal Activity Web Hook</a></li>
+</ul>
+
+<p>The URL for your webhook should look like this:</p>
+
+<ul>
+<li>Github: {your TimePulse installation URL}/github</li>
+<li>Pivotal Tracker: {your TimePulse Installation URL}/pivotal</li>
+</ul>
+
+<p>That's it! We welcome submissions for integrations with other web based programming tools.</p>
