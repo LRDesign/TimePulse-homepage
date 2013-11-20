@@ -51,3 +51,5 @@
               #sidebar
                 = render :partial => 'layouts/nav'
               #footer= yield :footer if yield :footer
+    = cache('analytics') do
+      = render :partial => 'layouts/analytics'
