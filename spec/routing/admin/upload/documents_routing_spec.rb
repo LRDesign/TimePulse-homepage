@@ -15,11 +15,11 @@ describe Admin::Upload::DocumentsController do
     end
 
     it "recognizes and generates #create" do
-      { :post => "/admin/upload/documents" }.should route_to(:controller => "admin/upload/documents", :action => "create") 
+      { :post => "/admin/upload/documents" }.should route_to(:controller => "admin/upload/documents", :action => "create")
     end
 
     it "recognizes and generates #destroy" do
-      { :delete => "/admin/upload/documents/1" }.should route_to(:controller => "admin/upload/documents", :action => "destroy", :id => "1") 
+      { :delete => "/admin/upload/documents/1" }.should route_to(:controller => "admin/upload/documents", :action => "destroy", :id => "1")
     end
   end
 end

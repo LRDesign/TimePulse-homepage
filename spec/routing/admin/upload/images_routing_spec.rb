@@ -19,15 +19,15 @@ describe Admin::Upload::ImagesController do
     end
 
     it "recognizes and generates #create" do
-      { :post => "/admin/upload/images" }.should route_to(:controller => "admin/upload/images", :action => "create") 
+      { :post => "/admin/upload/images" }.should route_to(:controller => "admin/upload/images", :action => "create")
     end
 
     it "recognizes and generates #update" do
-      { :put => "/admin/upload/images/1" }.should route_to(:controller => "admin/upload/images", :action => "update", :id => "1") 
+      { :put => "/admin/upload/images/1" }.should route_to(:controller => "admin/upload/images", :action => "update", :id => "1")
     end
 
     it "recognizes and generates #destroy" do
-      { :delete => "/admin/upload/images/1" }.should route_to(:controller => "admin/upload/images", :action => "destroy", :id => "1") 
+      { :delete => "/admin/upload/images/1" }.should route_to(:controller => "admin/upload/images", :action => "destroy", :id => "1")
     end
   end
 end

@@ -17,5 +17,3 @@ describe "/admin/pages/new" do
     rendered.should have_selector("form", :action => admin_pages_path, :method=> 'post')
   end
 end
-
-

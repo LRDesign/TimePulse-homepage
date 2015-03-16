@@ -9,4 +9,3 @@ describe "/admin/upload/images/index" do
     render
   end
 end
-

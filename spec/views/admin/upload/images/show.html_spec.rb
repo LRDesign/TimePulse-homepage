@@ -9,4 +9,3 @@ describe "/admin/upload/images/show" do
     render
   end
 end
-

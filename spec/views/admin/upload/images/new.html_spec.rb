@@ -15,5 +15,3 @@ describe "/admin/upload/images/new" do
     rendered.should have_selector("form", :action => admin_upload_images_path, :method=> 'post')
   end
 end
-
-

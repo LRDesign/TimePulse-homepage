@@ -17,5 +17,3 @@ describe "/admin/locations/edit" do
     rendered.should have_selector("form", :action => admin_location_path(@location), :method=> 'post')
   end
 end
-
-

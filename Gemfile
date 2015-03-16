@@ -34,7 +34,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'rspec-steps', ">= 0.0.6"
-  gem 'debugger'
   gem 'quiet_assets'
   gem 'poltergeist'
 end
@@ -59,6 +58,3 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
-
-
-
