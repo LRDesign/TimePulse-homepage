@@ -1,7 +1,11 @@
-with (import <nixpkgs> {});
-stdenv.mkDerivation {
+let
+  pkgs = import <nixpkgs> {};
+  ruby = pkgs.ruby_2_4;
+  bundler = pkgs.bundler.override { inherit ruby; };
+in
+pkgs.stdenv.mkDerivation {
   name = "timepulse.io";
   src = ./.;
 
-  buildInputs = [bundler ruby_2_4 postgresql93 imagemagick];
+  buildInputs = [bundler ruby pkgs.postgresql93 pkgs.imagemagick];
 }
