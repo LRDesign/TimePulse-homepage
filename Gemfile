@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'pg'
+gem 'pg', "~> 0.11" #ActiveRecord does this under the covers
 gem "haml-rails"
 gem "sass-rails"
 gem 'compass-rails'
