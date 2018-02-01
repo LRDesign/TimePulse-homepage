@@ -31,6 +31,7 @@ role(:db, :primary => true) { domain }
 namespace :deploy do
   task :link_shared_files do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/initializers/devise_secret.rb #{release_path}/config/initializers/devise_secret.rb"
     run "ln -nfs #{shared_path}/db_backups #{release_path}/db_backups"
   end
 
